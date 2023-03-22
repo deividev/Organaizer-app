@@ -1,3 +1,4 @@
+import { MapsApp } from "./MapsApp";
 import "./styles/main.scss";
 // import { Link } from "./components/Link/Link";
 // import { Button } from "./components/Button/Button";
@@ -23,6 +24,7 @@ function App() {
   return (
     <div className="App">
       <h1>Geolocalizacion en tiempo real</h1>
+      <MapsApp></MapsApp>
       {/* <Button mode="secondary" size="large">
         Paco
         <Icon size={48} icon={"cart_shopping"} color="black"></Icon>
