@@ -21,8 +21,9 @@ export const MapView = () => {
     };
     return (
         <div>
-            {/* <span>Longitud: { userLocation?.longitude} </span>
-            <span>Latitud: {userLocation?.latitude}</span> */}
+            CurrentPositon:
+            <span> Longitud: { userLocation?.longitude} </span>
+            <span> Latitud: {userLocation?.latitude}</span>
             {coordsList?.map((coords: Coords, index) => { 
                 return (
                     <div key={index}>

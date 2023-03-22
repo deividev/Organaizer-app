@@ -36,7 +36,7 @@ export const CoordsProvider = ({ children }: Props) => {
         console.log(coords);
         
       })
-  }, [coordsState.isLoading])
+  }, [coordsState.userLocation])
 
   return (
     <CoordsContext.Provider
