@@ -5,7 +5,7 @@ import { Loading } from "../Loading/Loading"
 
 export const MapView = () => {
 
-    const { isLoading, userLocation } = useContext(CoordsContext)
+    const { isLoading, userLocation, coordsList } = useContext(CoordsContext)
 
     if ( isLoading ) {
         return ( <Loading />)
@@ -13,6 +13,13 @@ export const MapView = () => {
     return (
         <div>
             { userLocation?.join(',')}
+            {coordsList?.map((coords, index) => { 
+                return (
+                    <div key={index}>
+                        {coords}
+                    </div>
+                )
+            })}
         </div>
     )
 }
