@@ -1,4 +1,5 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import { getUserLocation } from "../../helpers";
 import { CoordsContext } from "./CoordsContext";
 import { coordsReducer } from "./coordsReducer";
 
@@ -18,7 +19,16 @@ interface Props {
 
 export const CoordsProvider = ({ children }: Props) => {
 
-  const [coordsState, coordsDispatch] = useReducer(coordsReducer, INITIAL_STATE)
+  const [coordsState, coordsDispatch] = useReducer(coordsReducer, INITIAL_STATE);
+
+  useEffect( () => {
+    getUserLocation()
+      .then( coords => {
+        coordsDispatch({ type: 'setUserLocation', payload: coords});
+        console.log(coords);
+      })
+  }, [])
+
   return (
     <CoordsContext.Provider
       value={{
