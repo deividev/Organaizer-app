@@ -1,4 +1,4 @@
-# Proyecto Vite + React + TypeScript + Sass + Storybook + Jest
+# Proyecto personal para controlar la distancia recorrida cada dia.
 
 Este proyecto es una plantilla para crear aplicaciones web utilizando Vite, React, TypeScript, Sass, Storybook y Jest.
 
