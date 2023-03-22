@@ -3,16 +3,20 @@ import { getUserLocation } from "../../helpers";
 import { CoordsContext } from "./CoordsContext";
 import { coordsReducer } from "./coordsReducer";
 
+export interface Coords {
+  latitude: number; longitude: number 
+}
+
 export interface CoordsState {
   isLoading: boolean;
-  userLocation?: [number, number] | [{ latitude: number; longitude: number }];
-  coordsList: [[number, number]] | []
+  userLocation?: Coords;
+  coordsList: Coords[]
 }
 
 const INITIAL_STATE: CoordsState = {
   isLoading: true,
   userLocation: undefined,
-  coordsList: []
+  coordsList: [{ latitude: 0, longitude: 0 }]
 };
 
 interface Props {
@@ -29,16 +33,15 @@ export const CoordsProvider = ({ children }: Props) => {
     getUserLocation()
       .then( coords => {
         coordsDispatch({ type: 'setUserLocation', payload: coords});
-        setCoordsList((currentArray: any[]) => [...currentArray, coords])
         console.log(coords);
+        
       })
-  }, [coordsState.userLocation])
+  }, [coordsState.isLoading])
 
   return (
     <CoordsContext.Provider
       value={{
        ...coordsState,
-       coordsList
       }}
     >
       {children}

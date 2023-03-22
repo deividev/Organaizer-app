@@ -1,9 +1,10 @@
 import { createContext } from "react";
+import { Coords } from "./CoordsProvider";
 
 export interface CoordsContextProps {
   isLoading: boolean;
-  userLocation?: [number, number] | [{ latitude: number; longitude: number }];
-  coordsList: [[number, number]] | []
+  userLocation?: Coords;
+  coordsList: Coords[]
 }
 
 export const CoordsContext = createContext({} as CoordsContextProps);

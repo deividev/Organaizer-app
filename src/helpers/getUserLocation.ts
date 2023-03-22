@@ -1,8 +1,10 @@
-export const getUserLocation = async (): Promise<[number, number]> => {
+import { Coords } from "../context/coords/CoordsProvider";
+
+export const getUserLocation = async (): Promise<Coords> => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.watchPosition(
         ({ coords}) => {
-            resolve([coords.longitude, coords.latitude])
+            resolve({longitude: coords.longitude, latitude: coords.latitude})
         },
         ( err ) => {
             console.log(err);
