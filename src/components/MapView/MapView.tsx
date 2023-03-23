@@ -27,26 +27,35 @@ export const MapView = () => {
         return ( <Loading />)
     };
     return (
-        <div ref={mapContainer}
-        style={{
-            width: '80vw',
-            height: '80vh',
-            position: 'fixed',
-            top: '0',
-            left: '0',
-        }}>           
-            CurrentPositon:
-            <span> Longitud: { userLocation?.longitude} </span>
-            <span> Latitud: {userLocation?.latitude}</span>
-            {coordsList?.map((coords: Coords, index) => { 
-                return (
-                    <div key={index}>
-                        <span>Longitud: {coords?.longitude} </span>
-                        <span>Latitud: {coords?.latitude}</span>
-                    </div>
-                )
-            })}
-            <p>KM Recorridos: {distanceTraveled}km</p>
-        </div>
+        <>
+            <div ref={mapContainer}
+            style={{
+                width: '80vw',
+                height: '80vh',
+                position: 'fixed',
+                top: '0',
+                left: '0',
+            }}>           
+            </div>
+            <div  style={{
+                
+                position: 'fixed',
+                bottom: '0',
+                left: '0',
+            }}>  
+                CurrentPositon:
+                <span> Longitud: { userLocation?.longitude} </span>
+                <span> Latitud: {userLocation?.latitude}</span>
+                {coordsList?.map((coords: Coords, index) => { 
+                    return (
+                        <div key={index}>
+                            <span>Longitud: {coords?.longitude} </span>
+                            <span>Latitud: {coords?.latitude}</span>
+                        </div>
+                    )
+                })}
+                <p>KM Recorridos: {distanceTraveled}km</p>
+            </div>
+        </>
     )
 }
