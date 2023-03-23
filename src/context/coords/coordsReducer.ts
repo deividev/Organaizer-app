@@ -38,15 +38,23 @@ export const coordsReducer = (
     case "setUserLocation":
       let sumDistance: number = 0;
       const ultimateCoords = state.coordsList[state.coordsList?.length - 1];
-      if ((ultimateCoords.latitude && ultimateCoords.latitude) !== 0) {
-        const distanceTraveleUltimate = calcularDistanciaEntreDosCoordenadas(
-          ultimateCoords.latitude,
-          ultimateCoords.longitude,
-          action.payload.latitude,
-          action.payload.longitude
-        );
-        sumDistance = state?.distanceTraveled + distanceTraveleUltimate;
-      }
+      debugger
+      const distanceTraveleUltimate = calcularDistanciaEntreDosCoordenadas(
+        ultimateCoords.latitude,
+        ultimateCoords.longitude,
+        action.payload.latitude,
+        action.payload.longitude
+      );
+      sumDistance = state?.distanceTraveled + distanceTraveleUltimate;
+      // if ((ultimateCoords.latitude && ultimateCoords.latitude) !== 0) {
+      //   const distanceTraveleUltimate = calcularDistanciaEntreDosCoordenadas(
+      //     ultimateCoords.latitude,
+      //     ultimateCoords.longitude,
+      //     action.payload.latitude,
+      //     action.payload.longitude
+      //   );
+        
+      // }
       const updateState = state.coordsList.filter((coords: Coords) => {
         if (coords.latitude !== 0 && coords.longitude !== 0) {
           return coords;
