@@ -1,26 +1,40 @@
-import { useContext } from "react"
+
+import { useContext, useLayoutEffect, useRef } from "react"
+import mapboxgl from "mapbox-gl";
 import { CoordsContext } from "../../context"
 import { Coords } from "../../context/coords/CoordsProvider";
 import { Loading } from "../Loading/Loading"
 
 
 export const MapView = () => {
+    
 
     const { isLoading, userLocation, coordsList, distanceTraveled } = useContext(CoordsContext);
-    // const deleteObjectDuplicate =  (arr: Coords[]) => {  
-    //     const arrMap: any[] = arr.map(elemento => {
-    //       return [JSON.stringify(elemento), elemento]
-    //     });
-      
-    //     return [...new Map(arrMap).values()];
-    // }
-    // const listCoords: unknown[] | Coords[] = deleteObjectDuplicate(coordsList);
+    const mapContainer = useRef<HTMLDivElement>(null)
+    
+    useLayoutEffect(() => {
+      if (!isLoading) {
+        const map = new mapboxgl.Map({
+            container: mapContainer.current!, // container ID
+            style: 'mapbox://styles/mapbox/streets-v12', // style URL
+            center: [userLocation?.longitude!, userLocation?.latitude!], // starting position [lng, lat]
+            zoom: 9, // starting zoom
+        });
+      }
+    }, [ isLoading ])
 
     if ( isLoading ) {
         return ( <Loading />)
     };
     return (
-        <div>
+        <div ref={mapContainer}
+        style={{
+            width: '80vw',
+            height: '80vh',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+        }}>           
             CurrentPositon:
             <span> Longitud: { userLocation?.longitude} </span>
             <span> Latitud: {userLocation?.latitude}</span>
