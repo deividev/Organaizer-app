@@ -31,7 +31,6 @@ export const coordsReducer = (
       const ultimateCoords = state.coordsList[state.coordsList?.length - 1];
       const distanceTraveled = calcularDistanciaEntreDosCoordenadas(ultimateCoords.latitude,
         ultimateCoords.longitude, action.payload.latitude, action.payload.longitude)
-      console.log(distanceTraveled);
       const updateState = state.coordsList.filter((coords: Coords) => {
         if (coords.latitude !== 0 && coords.longitude !== 0) {
             return coords
@@ -44,12 +43,14 @@ export const coordsReducer = (
           ...state,
           isLoading: false,
           userLocation: action.payload,
-          coordsList: payload
+          coordsList: payload,
+          distanceTraveled
         };
       }
       return {
         ...state,
         isLoading: false,
+        distanceTraveled
       };
       
     default:

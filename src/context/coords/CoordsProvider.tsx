@@ -10,13 +10,15 @@ export interface Coords {
 export interface CoordsState {
   isLoading: boolean;
   userLocation?: Coords;
-  coordsList: Coords[]
+  coordsList: Coords[];
+  distanceTraveled: number;
 }
 
 const INITIAL_STATE: CoordsState = {
   isLoading: true,
   userLocation: undefined,
-  coordsList: [{ latitude: 0, longitude: 0 }]
+  coordsList: [{ latitude: 0, longitude: 0 }],
+  distanceTraveled: 0
 };
 
 interface Props {
@@ -26,15 +28,12 @@ interface Props {
 export const CoordsProvider = ({ children }: Props) => {
 
   const [coordsState, coordsDispatch] = useReducer(coordsReducer, INITIAL_STATE);
-  // const [coordsArrayState, coordsArrayDispatch] = useReducer(coordsReducer, INITIAL_STATE);
-  const [coordsList, setCoordsList]: any[] = useState([])
 
   useEffect( () => {
     getUserLocation()
       .then( coords => {
         coordsDispatch({ type: 'setUserLocation', payload: coords});
         console.log(coords);
-        
       })
   }, [coordsState.userLocation])
 
