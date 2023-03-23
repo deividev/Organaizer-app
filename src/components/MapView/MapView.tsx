@@ -6,7 +6,7 @@ import { Loading } from "../Loading/Loading"
 
 export const MapView = () => {
 
-    const { isLoading, userLocation, coordsList } = useContext(CoordsContext);
+    const { isLoading, userLocation, coordsList, distanceTraveled } = useContext(CoordsContext);
     // const deleteObjectDuplicate =  (arr: Coords[]) => {  
     //     const arrMap: any[] = arr.map(elemento => {
     //       return [JSON.stringify(elemento), elemento]
@@ -32,6 +32,7 @@ export const MapView = () => {
                     </div>
                 )
             })}
+            <p>KM Recorridos: {distanceTraveled}km</p>
         </div>
     )
 }
