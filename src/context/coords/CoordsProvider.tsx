@@ -35,7 +35,7 @@ export const CoordsProvider = ({ children }: Props) => {
         coordsDispatch({ type: 'setUserLocation', payload: coords});
         console.log(coords);
       })
-  }, [coordsState.userLocation])
+  }, [coordsState.coordsList])
 
   return (
     <CoordsContext.Provider
