@@ -28,16 +28,26 @@ export const coordsReducer = (
 ): CoordsState => {
   switch (action.type) {
     case "setUserLocation":
-      const ultimateCoords = state.coordsList[state.coordsList?.length - 1];
-      const distanceTraveleUltimate = calcularDistanciaEntreDosCoordenadas(ultimateCoords.latitude,
-        ultimateCoords.longitude, action.payload.latitude, action.payload.longitude);
-      const sumDistance = state?.distanceTraveled + distanceTraveleUltimate;
+      if ((state.coordsList[0].latitude && state.coordsList[0].longitude) === 0) {
+        return {
+          ...state,
+          isLoading: false,
+          userLocation: action.payload,
+          coordsList: [action.payload],
+          distanceTraveled: 0
+        };
+      }
       const updateState = state.coordsList.filter((coords: Coords) => {
+        debugger
         if (coords.latitude !== 0 && coords.longitude !== 0) {
             return coords
         } 
         return
       })
+      const ultimateCoords = state.coordsList[state.coordsList?.length - 1];
+      const distanceTraveleUltimate = calcularDistanciaEntreDosCoordenadas(ultimateCoords.latitude,
+        ultimateCoords.longitude, action.payload.latitude, action.payload.longitude);
+      const sumDistance = state?.distanceTraveled + distanceTraveleUltimate;
       if (ultimateCoords.longitude !== action.payload.longitude && ultimateCoords.latitude !== action.payload.latitude) {
         const payload: Coords[] = [...updateState, action.payload];
         
@@ -52,7 +62,8 @@ export const coordsReducer = (
       return {
         ...state,
         isLoading: false,
-        distanceTraveled: sumDistance
+        distanceTraveled: sumDistance,
+        coordsList: updateState,
       };
       
     default:
