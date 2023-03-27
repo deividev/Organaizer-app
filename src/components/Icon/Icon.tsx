@@ -28,19 +28,24 @@ export const Icon = ({
     icon,
     ...props
   }: IconProps) => {
-  
+
   return (
-    <svg className={props.className} onClick={props.onClick}
-      width={`${props.size ? props.size : '24'}px`}
-      height={`${props.size ? props.size : '24'}px`}
-      viewBox="0 0 24 24"
-    >
-	    <path fill="none" d="M0 0h24v24H0z"/>
-      <path
-		    fill={props.className ? props.className.fill : props.color}
-        d={ICONS[icon]}
-      ></path>
-    </svg>
+    <>
+      {ICONS[icon] && 
+        <svg className={props.className} onClick={props.onClick}
+        width={`${props.size ? props.size : '24'}px`}
+        height={`${props.size ? props.size : '24'}px`}
+        viewBox="0 0 24 24"
+        >
+          <path
+            fill={props.className ? props.className.fill : props.color}
+            d={ICONS[icon]}
+          ></path>
+          <path fill="none" d="M0 0h24v24H0z"/>
+          
+        </svg>
+      }
+    </>
   );
 };
 
