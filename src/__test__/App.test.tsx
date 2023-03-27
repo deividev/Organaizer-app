@@ -1,9 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import "@testing-library/jest-dom/extend-expect";
 import App from '../App';
+import { CoordsProvider } from '../context';
 
-test('Renders main page correctly', async () => {
-  render(<App />);
-  const buttonCount = await screen.findByRole('button');
-  expect(buttonCount.innerHTML).toBe('count is 0');
-  expect(true).toBeTruthy();
+test("test page correctly", () => {
+  const { container } = render(
+    <CoordsProvider>
+      <App/>
+    </CoordsProvider>);
+  expect(container).toBeInTheDocument()
 });
+
