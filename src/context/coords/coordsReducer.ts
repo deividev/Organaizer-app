@@ -1,12 +1,12 @@
 import { Coords, CoordsState } from "./CoordsProvider";
 
-type CoordsAction = { type: "setUserLocation"; payload:  Coords };
+export type CoordsAction = { type: "setUserLocation"; payload:  Coords };
 
-const gradosARadianes = (grados: number) => {
+export const gradosARadianes = (grados: number) => {
   return grados * Math.PI / 180;
 };
 
-const calcularDistanciaEntreDosCoordenadas = 
+export const calcularDistanciaEntreDosCoordenadas = 
   (lat1: number, lon1: number, lat2: number, lon2: number) => {
   // Convertir todas las coordenadas a radianes
   lat1 = gradosARadianes(lat1);
@@ -38,7 +38,6 @@ export const coordsReducer = (
         };
       }
       const updateState = state.coordsList.filter((coords: Coords) => {
-        debugger
         if (coords.latitude !== 0 && coords.longitude !== 0) {
             return coords
         } 

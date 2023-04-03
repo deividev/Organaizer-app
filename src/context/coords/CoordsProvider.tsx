@@ -33,7 +33,6 @@ export const CoordsProvider = ({ children }: Props) => {
     getUserLocation()
       .then( coords => {
         coordsDispatch({ type: 'setUserLocation', payload: coords});
-        console.log(coords);
       })
   }, [coordsState.coordsList])
 
