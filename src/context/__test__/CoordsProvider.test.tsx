@@ -22,7 +22,7 @@ describe("CoordsProvider", () => {
 				reject('awdawd awdawd awedawd')
 			});
 		}
-    getUserLocation.mockResolvedValue(mockUserLocation); 
+    // getUserLocation.mockResolvedValue(mockUserLocation); 
 		// Renderizamos el componente
     render(<CoordsProvider>{}</CoordsProvider>);
 
